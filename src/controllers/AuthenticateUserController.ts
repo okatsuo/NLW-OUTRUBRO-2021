@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, response, Response } from 'express';
 import { request } from 'http';
 import { AuthenticateUserService } from '../services/AuthenticateUserService';
 
@@ -7,9 +7,12 @@ class AuthenticateUserController {
     const { code } = req.body
 
     const service = new AuthenticateUserService()
-    const result = await service.execute(code)
-
-    return res.json(result)
+    try {
+      const result = await service.execute(code)
+      return response.json(result)
+    } catch (error) {
+      return response.json({error: error.message})
+    }
   }
 }
 
