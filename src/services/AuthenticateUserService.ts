@@ -39,7 +39,7 @@ class AuthenticateUserService {
         github_id: id
       }
     })
-    console.log("user:", user);
+
     if (!user) {
       await prismaClient.user.create({
         data: {
@@ -50,7 +50,6 @@ class AuthenticateUserService {
         }
       })
     }
-    console.log("criado:", user);
 
     const token = sign({
       user: {
