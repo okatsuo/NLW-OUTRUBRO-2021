@@ -8,7 +8,7 @@ class GetLast3MessagesController {
     try {
       const service = new GetLast3MessagesService();
 
-      const result = service.execute()
+      const result = await service.execute()
       return res.json(result)
     } catch (error) {
       res.json({ errorCode: error.message })
