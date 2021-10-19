@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { io } from '../app';
 import { CreateMessageService } from '../services/CreateMessageService';
 
 class CreateMessageController {
@@ -8,7 +9,6 @@ class CreateMessageController {
     if(!message) return res.status(400).json({errorCode: "message not provided"})
     const service = new CreateMessageService()
     const result = await service.execute(message, user_id)
-
     return res.json(result)
   }
 }
